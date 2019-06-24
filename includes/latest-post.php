@@ -1,6 +1,21 @@
 <?php
+
+  //PAGING POST
+  $per_page = 4;
+  $cur_page = 1;
+  if(isset($_GET["page"])){
+    $cur_page = $_GET["page"];
+    $cur_page = ($cur_page > 1) ? $cur_page : 1;
+  }
+
+  $total_data = mysqli_num_rows(mysqli_query($connection, "SELECT * FROM post"));
+  $total_page = ceil($total_data/$per_page);
+  $offset     = ($cur_page - 1) * $per_page;
+
+  //TAMPILKAN DATA POST
   $query = mysqli_query($connection, "SELECT post.*, category.category_name, category.icon 
-                                      FROM post, category WHERE category.id = post.category_id ORDER BY id DESC");
+                                      FROM post, category WHERE category.id = post.category_id ORDER BY id DESC
+                                      LIMIT $per_page OFFSET $offset");
 ?>
 
 <article>
@@ -20,17 +35,29 @@
   <?php } ?>
   <?php } ?>
 </article>
-<nav class="text-center">
-  <ul class="pagination">
-    <li>
-        <a href="#" aria-label="Previous">
-            <span aria-hidden="true">Prev</span>
-        </a>
-    </li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">Next</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+<?php if(isset($total_page)) {?>
+  <?php if($total_page > 1) {?>
+    <nav class="text-center">
+      <ul class="pagination">
+        <?php if($cur_page > 1) {?>
+          <li>
+              <a href="index.php?page=<?php echo $cur_page - 1 ?>" aria-label="Previous">
+                  <span aria-hidden="true">Prev</span>
+              </a>
+          </li>
+        <?php } else { ?>
+          <li class="disabled"><span aria-hidden="true">Prev</span></li>
+        <?php } ?>
+        <?php if($cur_page < $total_page) {?>
+          <li>
+            <a href="index.php?page=<?php echo $cur_page + 1 ?>" aria-label="Next">
+              <span aria-hidden="true">Next</span>
+            </a>
+          </li>
+          <?php } else { ?>
+          <li class="disabled"><span aria-hidden="true">Next</span></li>
+        <?php } ?>
+      </ul>
+    </nav>
+  <?php } ?>
+<?php } ?>

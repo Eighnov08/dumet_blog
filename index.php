@@ -17,7 +17,7 @@ date_default_timezone_set("Asia/Jakarta");
           <div class="row">
             <div class="col-md-8">
               <?php
-                if (isset($_GET["home"])) {include "includes/latest-post.php";}
+                if (isset($_GET["home"]) || isset($_GET["page"])) {include "includes/latest-post.php";}
                 else if (isset($_GET["detail"])) {include "includes/detail.php";}
                 else {include "includes/latest-post.php";}
               ?>
