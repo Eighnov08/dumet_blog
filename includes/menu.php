@@ -1,3 +1,9 @@
+<?php
+
+$query = mysqli_query($connection, "SELECT * FROM category");
+
+?>
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -24,9 +30,15 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Kategori Berita <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="index.php?category"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> Musik</a></li>
-            <li><a href="index.php?category"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Kesehatan</a></li>
-            <li><a href="index.php?category"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Teknologi</a></li>
+            <?php if(mysqli_num_rows($query)>0) {?>
+              <?php while($row = mysqli_fetch_array($query)) {?>
+                <li>
+                  <a href="index.php?category=<?php echo $row["id"] ?>">
+                  <span class="<?php echo $row["icon"] ?>" aria-hidden="true">
+                  </span> <?php echo $row["category_name"] ?></a>
+                </li>
+              <?php } ?>
+            <?php } ?>
           </ul>
         </li>
       </ul>

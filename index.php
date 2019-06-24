@@ -1,4 +1,12 @@
-<?php include "includes/head.php"; ?>
+<?php 
+
+ob_start();
+include "includes/config.php";
+include "includes/head.php"; 
+include "function/function_tgl_indo.php";
+date_default_timezone_set("Asia/Jakarta");
+
+?>
   <body>
     <div class="container">
       <div class="row">
@@ -28,3 +36,8 @@
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
+
+<?php
+  mysqli_close($connection);
+  ob_end_flush();
+?>
