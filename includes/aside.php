@@ -1,3 +1,7 @@
+<?php
+	$comment = mysqli_query($connection, "SELECT * FROM comment WHERE status = '1' ORDER BY id DESC LIMIT 3");
+?>
+
 <aside class="col-md-4">
     <div class="panel panel-default">
     	<div class="panel-heading">
@@ -5,9 +9,16 @@
     	</div>
     	<div class="panel-body latest-comments">
     		<ul>
-    		    <li><a href="index.php?detail"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <strong>Alissa</strong>: Many desktop publishing packages and web page editors now use.</a></li>
-    		    <li><a href="index.php?detail"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <strong>Chelsea</strong>: All the Lorem Ipsum generators on the Internet tend to repeat predefined.</a></li>
-    		    <li><a href="index.php?detail"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <strong>Nagita</strong>: It uses a dictionary of over 200 Latin words, combined with.</a></li>
+				<?php if(mysqli_num_rows($comment)) {?>
+					<?php while($row_comment=mysqli_fetch_array($comment)) {?>
+						<li>
+							<a href="index.php?detail">
+								<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 
+								<strong><?php echo $row_comment["name"] ?></strong>: <?php echo $row_comment["reply"] ?>
+							</a>
+						</li>
+					<?php } ?>
+				<?php } ?>
     		</ul>
     	</div>
     </div>

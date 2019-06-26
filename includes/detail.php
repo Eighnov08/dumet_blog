@@ -1,5 +1,5 @@
 <?php
-  //INPUT COMMENT
+  //INPUT KOMENTAR
   if(isset($_POST["submit"])){
     $post_id = $_POST["post_id"];
     $name = $_POST["name"];
@@ -9,26 +9,26 @@
     header("location:index.php?detail=$post_id&success-comment#success");
   }
 
-  //DETAIL POST
+  //MENAMPILKAN DETAIL
   $detail_id = $_GET["detail"];
-  $query = mysqli_query($connection, "SELECT post.*, category.category_name, category.icon FROM post, category
-                                      WHERE category.id = post.category_id AND post.id = '$detail_id'");
+  $query = mysqli_query($connection, "SELECT post.*, category.category_name, category.icon FROM
+                        post, category WHERE category.id = post.category_id AND post.id = '$detail_id'");
   if(mysqli_num_rows($query) == 0) header("location:index.php");
   $row_detail = mysqli_fetch_array($query);
-
-  //TAMPIL COMMENT
-  $comment = mysqli_query($connection, "SELECT * FROM comment WHERE post_id = '$detail_id'
-                                        AND STATUS = '1' ORDER BY id DESC");
+  
+  //MENAMPILKAN KOMENTAR
+  $comment = mysqli_query($connection, "SELECT * FROM comment WHERE post_id = '$detail_id' AND status = '1' ORDER BY id DESC");
   $data = mysqli_num_rows($comment);
 ?>
 
 <article>
     <div class="meta">
-        <a href="index.php?category=<?php echo $row_detail["category_id"] ?>"><span class="<?php echo $row_detail["icon"] ?>" aria-hidden="true"></span> <?php echo $row_detail["category_name"] ?></a> - <?php echo tanggal_indonesia($row_detail["date"]) ?>
+        <a href="#"><span class="<?php echo $row_detail["icon"] ?>" aria-hidden="true"></span> <?php echo $row_detail["category_name"] ?></a> - <?php echo tanggal_indonesia($row_detail["date"]) ?>
     </div>
     <h1><?php echo $row_detail["title"] ?></h1>
     <img src="images/<?php echo $row_detail["image"] ?>" class="img-responsive btn-block">
     <p><?php echo $row_detail["description"] ?></p>
+
     <!-- Komentar -->
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -37,7 +37,7 @@
       <div class="panel-body">
         <ul class="list-group">
           <?php if(mysqli_num_rows($comment)) {?>
-            <?php while($row_comment = mysqli_fetch_array($comment)) {?>
+            <?php while($row_comment=mysqli_fetch_array($comment)) {?>
               <li class="list-group-item">
                 <strong><?php echo $row_comment["name"] ?></strong>: <?php echo $row_comment["reply"] ?>
               </li>
@@ -55,14 +55,13 @@
       <div class="panel-body" id="success">
         <form class="form-horizontal" method="POST">
 
-          <?php if(isset($_GET["success-comment"])) {?>
+        <?php if(isset($_GET["success-comment"])){ ?>
           <div class="form-group">
-            <label for="inputNama3" class="col-sm-2 control-label">Nama</label>
             <div class="col-sm-10">
-              <p style="color:blue">Terima Kasih Komentar Anda Sedang Diteliti!</p>
+              <p style="color:blue">Terima Kasih, Komentar Anda Sedang Diteliti...</p>
             </div>
           </div>
-          <?php } ?>
+        <?php } ?>
 
           <div class="form-group">
             <label for="inputNama3" class="col-sm-2 control-label">Nama</label>

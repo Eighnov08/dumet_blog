@@ -32,9 +32,10 @@
           <p><?php echo $row["description"] ?></p>
         </div>
       </div>
-  <?php } ?>
+    <?php } ?>
   <?php } ?>
 </article>
+
 <?php if(isset($total_page)) {?>
   <?php if($total_page > 1) {?>
     <nav class="text-center">
