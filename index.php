@@ -1,6 +1,7 @@
 <?php 
 
 ob_start();
+session_start();
 include "includes/config.php";
 include "includes/head.php"; 
 include "function/function_tgl_indo.php";
@@ -20,6 +21,7 @@ date_default_timezone_set("Asia/Jakarta");
                 if (isset($_GET["home"]) || isset($_GET["page"])) {include "includes/latest-post.php";}
                 else if (isset($_GET["detail"])) {include "includes/detail.php";}
                 else if (isset($_GET["category"]) || isset($_GET["page-category"])) {include "includes/category.php";}
+                else if (isset($_GET["search"]) || isset($_GET["page-search"])) {include "includes/search.php";}
                 else {include "includes/latest-post.php";}
               ?>
             </div>

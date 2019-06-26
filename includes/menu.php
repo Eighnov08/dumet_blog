@@ -20,11 +20,11 @@ $query = mysqli_query($connection, "SELECT * FROM category");
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-left" role="search">
+      <form class="navbar-form navbar-left" role="search" method="POST" action="index.php?search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Cari...">
+          <input type="text" class="form-control" placeholder="Cari..." name="keyword">
         </div>
-        <button type="submit" class="btn btn-default">Cari</button>
+        <button type="submit" class="btn btn-default" name="search">Cari</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
