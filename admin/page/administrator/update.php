@@ -1,10 +1,17 @@
 <?php
-    if(isset($_POST["submit"])){
+    //INPUT DATA UPDATE
+    if(isset($_POST["update"])){
+        $admin_id = $_POST["admin_id"];
         $username = $_POST["username"];
         $password = md5($_POST["password"]);
-        mysqli_query($connection, "INSERT INTO admin VALUES ('','$username','$password')");
+        mysqli_query($connection, "UPDATE admin SET username = '$username', password = '$password' WHERE id = '$admin_id'");
         header("location:index.php?administrator");
     }
+
+    //TAMPIL DATA UPDATE
+    $admin_id = $_GET["administrator-update"];
+    $update = mysqli_query($connection, "SELECT * FROM admin WHERE id = '$admin_id'");
+    $row_update = mysqli_fetch_array($update);
 
     $query = mysqli_query($connection, "SELECT * FROM admin ORDER BY id DESC");
 ?>
@@ -25,14 +32,15 @@
                         <form role="form" action="" method="post">
                             <div class="form-group">
                                 <label>Username</label>
-                                <input class="form-control" type="text" name="username" />
+                                <input class="form-control" type="text" name="username" value="<?php echo $row_update["username"] ?>"/>
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input class="form-control" type="password" name="password" />
+                                <input class="form-control" type="password" name="password" value="<?php echo $row_update["password"] ?>"/>
                             </div>
-                            <button type="submit" name="submit" class="btn btn-success">Save</button>
+                            <button type="submit" name="update" class="btn btn-success">Update</button>
                             <button type="reset" class="btn btn-warning">Reset</button>
+                            <input type="hidden" name="admin_id" value="<?php echo $row_update["id"] ?>">
                         </form>
                     </div>
                 </div>

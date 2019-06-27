@@ -1,3 +1,51 @@
+<!-- INDEX -->
+<?php
+    ob_start();
+    session_start();
+    if(!isset($_SESSION["admin_id"])) header("location:login.php");
+    include "../includes/config.php";
+    include "../function/function_tgl_indo.php";
+?>
+
+<!DOCTYPE html>
+<html>
+<?php include("include/head.php") ?>
+<body>
+    <div id="wrapper">
+        <?php include("include/header.php") ?>
+        <div id="page-wrapper">
+            <?php
+            if (isset($_GET["category"])) include("page/blog/category.php");
+            else if (isset($_GET["post"])) include("page/blog/post.php");
+            else if (isset($_GET["comment"])) include("page/blog/comment.php");
+            else if (isset($_GET["user"])) include("page/user/index.php");
+            else if (isset($_GET["administrator"])) include("page/administrator/index.php");
+            else include("page/home/index.php");
+            ?>
+        </div>
+    </div>
+    <?php include("include/footer.php") ?>
+</body>
+</html>
+<?php
+    mysqli_close($connection);
+    ob_end_flush();
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- LOGIN -->
 <?php
     ob_start();
     session_start();
@@ -12,15 +60,16 @@
         $sql_login = mysqli_query($connection, "SELECT * FROM admin WHERE username = '$username' AND password = '$password'");
 
         if(mysqli_num_rows($sql_login)>0){
-            $row = mysqli_fetch_array($sql_login);
-            $_SESSION["admin_id"] = $row["id"];
-            $_SESSION["admin_username"] = $row["username"];
+            $row_admin = mysqli_fetch_array($sql_login);
+            $_SESSION["admin_id"] = $row_admin["id"];
+            $_SESSION["admin_username"] = $row_admin["username"];
             header("location:index.php");
         } else {
             header("location:login.php?failed");
         }
     }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,4 +121,39 @@
 <?php
     mysqli_close($connection);
     ob_end_flush();
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- LOGOUT -->
+<?php
+    session_start();
+
+    $_SESSION["admin_id"];
+    $_SESSION["admin_username"];
+
+    unset($_SESSION["admin_id"]);
+    unset($_SESSION["admin_username"]);
+
+    session_unset();
+    session_destroy();
+
+    header("location:login.php");
 ?>
