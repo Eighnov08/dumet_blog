@@ -1,14 +1,19 @@
 <?php
     include "../includes/config.php";
 
-    if(isset($_POST["submit"])){
+    if(isset($_POST["update"])){
+        $category_id = $_POST["category_id"];
         $category_name = $_POST["name"];
         $icon = $_POST["icon"];
-        mysqli_query($connection, "INSERT INTO category VALUES('','$category_name','$icon')");
+        mysqli_query($connection, "UPDATE category SET category_name = '$category_name', icon = '$icon' WHERE id = '$category_id'");
         header ("location:index.php?category");
     }
 
-    $query = mysqli_query($connection, "SELECT * FROM category ORDER BY id DESC");
+    $category_id = $_GET["category-update"];
+    $update = mysqli_query($connection, "SELECT * FROM category WHERE id = '$category_id'");
+    $row_update = mysqli_fetch_array($update);
+
+    $query = mysqli_query($connection, "SELECT * FROM category");
 ?>
 
 <div class="row">
@@ -28,14 +33,15 @@
                         <form role="form" action="" method="post">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input class="form-control" type="text" name="name" />
+                                <input class="form-control" type="text" name="name" value="<?php echo $row_update["category_name"] ?>"/>
                             </div>
                             <div class="form-group">
                                 <label>Icon</label>
-                                <input class="form-control" type="text" name="icon" />
+                                <input class="form-control" type="text" name="icon" value="<?php echo $row_update["icon"] ?>"/>
                             </div>
-                            <button type="submit" name="submit" class="btn btn-success">Save</button>
+                            <button type="submit" name="update" class="btn btn-success">Update</button>
                             <button type="reset" class="btn btn-warning">Reset</button>
+                            <input type="hidden" name="category_id" value="<?php echo $row_update["id"] ?>">
                         </form>
                     </div>
                 </div>
@@ -61,7 +67,7 @@
                                 <?php while($row=mysqli_fetch_array($query)) {?>
                                     <tr>
                                         <td><?php echo $row["category_name"] ?></td>
-                                        <td><span class="<?php echo $row["icon"] ?>"></span><?php echo "&nbsp;&nbsp;".$row["icon"] ?></td>
+                                        <td><?php echo $row["icon"] ?></td>
                                         <td class="center"><a href="index.php?category-update=<?php echo $row["id"] ?>" class="btn btn-primary btn-xs" type="button">Update</a></td>
                                         <td class="center"><a href="index.php?category-delete=<?php echo $row["id"] ?>" class="btn btn-primary btn-xs" type="button">Delete</a></td>
                                     </tr>

@@ -14,6 +14,8 @@
         <div id="page-wrapper">
             <?php
             if (isset($_GET["category"])) include("page/blog/category.php");
+            else if (isset($_GET["category-update"])) include("page/blog/update.php");
+            else if (isset($_GET["category-delete"])) include("page/blog/delete.php");
             else if (isset($_GET["post"])) include("page/blog/post.php");
             else if (isset($_GET["comment"])) include("page/blog/comment.php");
             else if (isset($_GET["user"])) include("page/user/index.php");
