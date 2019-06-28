@@ -1,4 +1,15 @@
 <?php
+    //UPDATE DATA POST
+    if(isset($_POST["update"])){
+        $post_id = $_POST["post_id"];
+        $category_id = $_POST["category_id"];
+        $title = $_POST["title"];
+        $description = $_POST["description"];
+
+        $file_name = $_FILES["file"]["name"];
+        $tmp_name = $_FILES["file"]["tmp_name"];
+    }
+
     //TAMPIL DATA UPDATE POST
     $post_id = $_GET["post-update"];
     $update = mysqli_query($connection, "SELECT * FROM post WHERE id = '$post_id'");
