@@ -1,16 +1,15 @@
 <?php
-    include "../includes/config.php";
-
+    //INSERT DATA CATEGORY
     if(isset($_POST["submit"])){
         $category_name = $_POST["name"];
-        $icon = $_POST["icon"];
-        mysqli_query($connection, "INSERT INTO category VALUES('','$category_name','$icon')");
-        header ("location:index.php?category");
+        $category_icon = $_POST["icon"];
+        mysqli_query($connection, "INSERT INTO category VALUES ('','$category_name','$category_icon')");
+        header("location:index.php?category");
     }
 
+    //TAMPIL DATA CATEGORY
     $query = mysqli_query($connection, "SELECT * FROM category ORDER BY id DESC");
 ?>
-
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Blog &raquo; Category</h1>
@@ -58,7 +57,7 @@
                         </thead>
                         <tbody>
                             <?php if(mysqli_num_rows($query)>0) {?>
-                                <?php while($row=mysqli_fetch_array($query)) {?>
+                                <?php while($row = mysqli_fetch_array($query)) {?>
                                     <tr>
                                         <td><?php echo $row["category_name"] ?></td>
                                         <td><span class="<?php echo $row["icon"] ?>"></span><?php echo "&nbsp;&nbsp;".$row["icon"] ?></td>

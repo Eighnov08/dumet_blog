@@ -1,13 +1,16 @@
 <?php
+    //INPUT DATA ADMINISTRATOR
     if(isset($_POST["submit"])){
         $username = $_POST["username"];
         $password = md5($_POST["password"]);
-        mysqli_query($connection, "INSERT INTO admin VALUES ('','$username','$password')");
+        mysqli_query($connection, "INSERT INTO admin VALUES('','$username','$password')");
         header("location:index.php?administrator");
     }
 
+    //TAMPIL DATA ADMINISTRATOR
     $query = mysqli_query($connection, "SELECT * FROM admin ORDER BY id DESC");
 ?>
+
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Blog &raquo; Administrator</h1>
@@ -55,7 +58,7 @@
                         </thead>
                         <tbody>
                             <?php if(mysqli_num_rows($query)>0) {?>
-                                <?php while($row=mysqli_fetch_array($query)) {?>
+                                <?php while($row=mysqli_fetch_array($query)){ ?>
                                     <tr>
                                         <td><?php echo $row["username"] ?></td>
                                         <td><?php echo $row["password"] ?></td>
