@@ -1,19 +1,8 @@
 <?php
-    //INSERT DATA POST
-    if(isset($_POST["submit"])){
-        $category_id = $_POST["category_id"];
-        $title = $_POST["title"];
-        $description = $_POST["description"];
-        $date = date("Y-m-d H:i:s");
-
-        //MOVE IMAGE
-        $file_name = $_FILES["file"]["name"];
-        $tmp_name = $_FILES["file"]["tmp_name"];
-        move_uploaded_file($tmp_name, "../images/".$file_name);
-
-        mysqli_query($connection, "INSERT INTO post VALUES ('','$category_id','$title','$description','$file_name','$date')");
-        header("location:index.php?post");
-    }
+    //TAMPIL DATA UPDATE POST
+    $post_id = $_GET["post-update"];
+    $update = mysqli_query($connection, "SELECT * FROM post WHERE id = '$post_id'");
+    $row_update = mysqli_fetch_array($update);
 
     //TAMPIL CATEGORY NAME
     $category = mysqli_query($connection, "SELECT * FROM category ORDER BY id ASC");
@@ -41,28 +30,31 @@
                             <div class="form-group">
                                 <label>Category</label>
                                 <select class="form-control" name="category_id">
-                                    <option value=""> - choose - </option>
+                                    <option value="<?php $row_update["category_name"] ?>"> - choose - </option>
                                     <?php if(mysqli_num_rows($category)>0) {?>
                                         <?php while($row_cat=mysqli_fetch_array($category)) {?>
-                                            <option value="<?php echo $row_cat["id"] ?>"> <?php echo $row_cat["category_name"] ?> </option>
+                                            <option <?php echo $row_update["category_id"]==$row_cat["id"] ? "selected='select'" : "" ?>
+                                            value="<?php echo $row_cat["id"] ?>"> <?php echo $row_cat["category_name"] ?> </option>
                                         <?php } ?>
                                     <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Title</label>
-                                <input class="form-control" type="text" name="title" />
+                                <input class="form-control" type="text" name="title" value="<?php echo $row_update["title"] ?>"/>
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" rows="3" name="description"></textarea>
+                                <textarea class="form-control" rows="3" name="description"><?php echo $row_update["description"] ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
-                                <input type="file" name="file" />
+                                <p><img src="../images/<?php echo $row_update["image"] ?>" width="88"></p>
+                                <input type="file" name="file" value=""/>
                             </div>
-                            <button type="submit" name="submit" class="btn btn-success">Save</button>
+                            <button type="submit" name="update" class="btn btn-success">Update</button>
                             <button type="reset" class="btn btn-warning">Reset</button>
+                            <input type="hidden" name="post_id" value="<?php echo $row_update["id"] ?>">
                         </form>
                     </div>
                 </div>
