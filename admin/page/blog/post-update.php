@@ -8,6 +8,15 @@
 
         $file_name = $_FILES["file"]["name"];
         $tmp_name = $_FILES["file"]["tmp_name"];
+        if($file_name=="" || empty($file_name)){
+            mysqli_query($connection, "UPDATE post SET category_id = '$category_id', title = '$title', description = '$description'
+                            WHERE id = '$post_id'");
+        } else {
+            move_uploaded_file($tmp_name, "../images/".$file_name);
+            mysqli_query($connection, "UPDATE post SET category_id = '$category_id', title = '$title', description = '$description',
+                            image = '$file_name' WHERE id = '$post_id'");
+        }
+        header("location:index.php?post");
     }
 
     //TAMPIL DATA UPDATE POST
