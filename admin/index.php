@@ -20,6 +20,8 @@
             else if (isset($_GET["post-update"])) include("page/blog/post-update.php");
             else if (isset($_GET["post-delete"])) include("page/blog/post-delete.php");
             else if (isset($_GET["comment"])) include("page/blog/comment.php");
+            else if (isset($_GET["comment-update"])) include("page/blog/comment-update.php");
+            else if (isset($_GET["comment-delete"])) include("page/blog/comment-delete.php");
             else if (isset($_GET["user"])) include("page/user/index.php");
             else if (isset($_GET["administrator"])) include("page/administrator/index.php");
             else if (isset($_GET["administrator-update"])) include("page/administrator/update.php");
