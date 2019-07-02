@@ -1,12 +1,23 @@
 <?php
+    if(isset($_POST["update"])){
+        $comment_id = $_POST["comment_id"];
+        $post_id = $_POST["post_id"];
+        $name = $_POST["user"];
+        $reply = $_POST["reply"];
+        $status = $_POST["status"];
+        mysqli_query($connection, "UPDATE comment SET post_id = '$post_id', name = '$name', reply = '$reply', status = '$status'
+                        WHERE id = '$comment_id'");
+        header("location:index.php?comment");
+    }
+
     $comment_id = $_GET["comment-update"];
     $update = mysqli_query($connection, "SELECT * FROM comment WHERE id = '$comment_id'");
     $row_update = mysqli_fetch_array($update);
 
     $post = mysqli_query($connection, "SELECT * FROM post ORDER BY id ASC");
 
-    $comment = mysqli_query($connection, "SELECT comment.*, post.title FROM comment, post
-                                WHERE comment.post_id = post.id ORDER BY comment.id DESC");
+    $comment = mysqli_query($connection, "SELECT comment.*, post.title FROM comment, post 
+                            WHERE comment.post_id = post.id AND status = '1' ORDER BY id DESC");
 ?>
 
 <div class="row">
@@ -38,11 +49,11 @@
                             </div>
                             <div class="form-group">
                                 <label>User</label>
-                                <input class="form-control" type="text" name="username" value="<?php echo $row_update["name"] ?>"/>
+                                <input class="form-control" type="text" name="user" value="<?php echo $row_update["name"]?>">
                             </div>
                             <div class="form-group">
                                 <label>Reply</label>
-                                <textarea class="form-control" rows="3" name="reply"><?php echo $row_update["reply"] ?></textarea>
+                                <textarea class="form-control" rows="3" name="reply"><?php echo $row_update["reply"]?></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Status</label>
@@ -57,9 +68,9 @@
                                     </label>
                                 </div>
                             </div>
-                            <button type="submit" name="submit" class="btn btn-success">Save</button>
+                            <button type="submit" name="update" class="btn btn-success">Update</button>
                             <button type="reset" class="btn btn-warning">Reset</button>
-                            <input type="hidden" name="comment_id" value="<?php echo $row_update["id"] ?>">
+                            <input type="hidden" name="comment_id" value="<?php echo $row_update["id"]?>">
                         </form>
                     </div>
                 </div>

@@ -1,19 +1,18 @@
 <?php
     if(isset($_POST["submit"])){
         $post_id = $_POST["post_id"];
-        $username = $_POST["username"];
+        $username = $_POST["user"];
         $reply = $_POST["reply"];
         $status = $_POST["status"];
         $date = date("Y-m-d H:i:s");
-
-        mysqli_query($connection, "INSERT INTO comment VALUES ('','$post_id','$username','$reply','$status','$date')");
+        mysqli_query($connection, "INSERT INTO comment VALUES('','$post_id','$username','$reply','$status','$date')");
         header("location:index.php?comment");
     }
 
     $post = mysqli_query($connection, "SELECT * FROM post ORDER BY id ASC");
 
-    $comment = mysqli_query($connection, "SELECT comment.*, post.title FROM comment, post
-                                WHERE comment.post_id = post.id ORDER BY comment.id DESC");
+    $comment = mysqli_query($connection, "SELECT comment.*, post.title FROM comment, post 
+                            WHERE comment.post_id = post.id AND status = '1' ORDER BY id DESC");
 ?>
 
 <div class="row">
@@ -44,7 +43,7 @@
                             </div>
                             <div class="form-group">
                                 <label>User</label>
-                                <input class="form-control" type="text" name="username" />
+                                <input class="form-control" type="text" name="user" />
                             </div>
                             <div class="form-group">
                                 <label>Reply</label>

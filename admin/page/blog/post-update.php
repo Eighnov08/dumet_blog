@@ -69,7 +69,9 @@
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
-                                <p><img src="../images/<?php echo $row_update["image"] ?>" width="88"></p>
+                                    <?php if($row_update["image"]==""){ echo "<p><img src='asset/no-image.png' width='88'/></p>"; }else{ ?>
+                                        <p><img src="../images/<?php echo $row_update["image"] ?>" width="88"></p>
+                                    <?php } ?>
                                 <input type="file" name="file" value=""/>
                             </div>
                             <button type="submit" name="update" class="btn btn-success">Update</button>
