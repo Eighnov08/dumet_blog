@@ -46,7 +46,7 @@
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <table id="table_id" class="display">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -61,8 +61,8 @@
                                     <tr>
                                         <td><?php echo $row["category_name"] ?></td>
                                         <td><span class="<?php echo $row["icon"] ?>"></span><?php echo "&nbsp;&nbsp;".$row["icon"] ?></td>
-                                        <td class="center"><a href="index.php?category-update=<?php echo $row["id"] ?>" class="btn btn-primary btn-xs" type="button">Update</a></td>
-                                        <td class="center"><a href="index.php?category-delete=<?php echo $row["id"] ?>" class="btn btn-primary btn-xs" type="button">Delete</a></td>
+                                        <td class="center"><a href="index.php?category-update=<?php echo $row["id"] ?>" class="btn btn-primary btn-xs" type="button" onclick="return confirm('Update Data Category?')">Update</a></td>
+                                        <td class="center"><a href="index.php?category-delete=<?php echo $row["id"] ?>" class="btn btn-primary btn-xs" type="button" onclick="return confirm('Delete Category??')">Delete</a></td>
                                     </tr>
                                 <?php } ?>
                             <?php } ?>

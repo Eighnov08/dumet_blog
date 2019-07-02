@@ -26,7 +26,9 @@
         <a href="index.php?category=<?php echo $row_detail["category_id"] ?>"><span class="<?php echo $row_detail["icon"] ?>" aria-hidden="true"></span> <?php echo $row_detail["category_name"] ?></a> - <?php echo tanggal_indonesia($row_detail["date"]) ?>
     </div>
     <h1><?php echo $row_detail["title"] ?></h1>
-    <img src="images/<?php echo $row_detail["image"] ?>" class="img-responsive btn-block">
+    <?php if($row_detail["image"]==""){ echo '<img src="images/no-image.png" class="img-responsive btn-block">'; } else { ?>
+      <img src="images/<?php echo $row_detail["image"] ?>" class="img-responsive btn-block">
+    <?php } ?>
     <p><?php echo $row_detail["description"] ?></p>
 
     <!-- Komentar -->

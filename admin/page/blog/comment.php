@@ -75,7 +75,7 @@
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <table id="table_id" class="display">
                         <thead>
                             <tr>
                                 <th>Post</th>
@@ -96,8 +96,8 @@
                                         <td><?php echo $row_comment["reply"] ?></td>
                                         <td><?php echo $row_comment["status"]== '1' ? "Active" : "Not Active" ?></td>
                                         <td><?php echo $row_comment["date"] ?></td>
-                                        <td class="center"><a href="index.php?comment-update=<?php echo $row_comment["id"] ?>" class="btn btn-primary btn-xs" type="button">Update</a></td>
-                                        <td class="center"><a href="index.php?comment-delete=<?php echo $row_comment["id"] ?>" class="btn btn-primary btn-xs" type="button">Delete</a></td>
+                                        <td class="center"><a href="index.php?comment-update=<?php echo $row_comment["id"] ?>" class="btn btn-primary btn-xs" type="button" onclick="return confirm('Update Data Comment?')">Update</a></td>
+                                        <td class="center"><a href="index.php?comment-delete=<?php echo $row_comment["id"] ?>" class="btn btn-primary btn-xs" type="button" onclick="return confirm('Delete Comment?')">Delete</a></td>
                                     </tr>
                                 <?php } ?>
                             <?php } ?>

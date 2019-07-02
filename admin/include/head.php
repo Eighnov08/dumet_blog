@@ -8,4 +8,5 @@
     <link href="css/plugins/timeline/timeline.css" rel="stylesheet" />
     <link href="css/sb-admin.css" rel="stylesheet" />
     <link href="asset/favicon.ico" type="image/x-icon" rel="Shortcut Icon" /> 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 </head>

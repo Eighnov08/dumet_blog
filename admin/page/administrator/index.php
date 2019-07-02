@@ -47,7 +47,7 @@
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <table id="table_id" class="display">
                         <thead>
                             <tr>
                                 <th>Username</th>
@@ -62,8 +62,8 @@
                                     <tr>
                                         <td><?php echo $row["username"] ?></td>
                                         <td><?php echo $row["password"] ?></td>
-                                        <td class="center"><a href="index.php?administrator-update=<?php echo $row["id"] ?>" class="btn btn-primary btn-xs" type="button">Update</a></td>
-                                        <td class="center"><a href="index.php?administrator-delete=<?php echo $row["id"] ?>" class="btn btn-primary btn-xs" type="button">Delete</a></td>
+                                        <td class="center"><a href="index.php?administrator-update=<?php echo $row["id"] ?>" class="btn btn-primary btn-xs" type="button" onclick="return confirm('Update Data Administrator?')">Update</a></td>
+                                        <td class="center"><a href="index.php?administrator-delete=<?php echo $row["id"] ?>" class="btn btn-primary btn-xs" type="button" onclick="return confirm('Delete Administrator?')">Delete</a></td>
                                     </tr>
                                 <?php } ?>
                             <?php } ?>

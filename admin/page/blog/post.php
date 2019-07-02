@@ -74,7 +74,7 @@
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <table id="table_id" class="display">
                         <thead>
                             <tr>
                                 <th>Category</th>
@@ -97,8 +97,8 @@
                                                 <img src="../images/<?php echo $row["image"] ?>" width="88" class="img-responsive" />
                                             <?php } ?>
                                         </td>
-                                        <td class="center"><a href="index.php?post-update=<?php echo $row["id"] ?>" class="btn btn-primary btn-xs" type="button">Update</a></td>
-                                        <td class="center"><a href="index.php?post-delete=<?php echo $row["id"] ?>" class="btn btn-primary btn-xs" type="button">Delete</a></td>
+                                        <td class="center"><a href="index.php?post-update=<?php echo $row["id"] ?>" class="btn btn-primary btn-xs" type="button" onclick="return confirm('Update Data Post?')">Update</a></td>
+                                        <td class="center"><a href="index.php?post-delete=<?php echo $row["id"] ?>" class="btn btn-primary btn-xs" type="button" onclick="return confirm('Delete Data Post?')">Delete</a></td>
                                     </tr>
                                 <?php } ?>
                             <?php } ?>
