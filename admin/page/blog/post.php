@@ -4,6 +4,8 @@
         $category_id = $_POST["category_id"];
         $title = $_POST["title"];
         $description = $_POST["description"];
+        // print_r($description);
+        // die();
         $date = date("Y-m-d H:i:s");
 
         //MOVE IMAGE
@@ -20,7 +22,7 @@
 
     //TAMPIL DATA POST
     $post = mysqli_query($connection, "SELECT post.*, category.category_name FROM post, category
-                                        WHERE post.category_id = category.id ORDER BY id DESC");
+                                        WHERE post.category_id = category.id ORDER BY post.id DESC");
 ?>
 
 <div class="row">
@@ -55,7 +57,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" rows="3" name="description"></textarea>
+                                <textarea class="form-control" rows="3" id="myeditor" name="description"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
