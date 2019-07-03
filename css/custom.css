@@ -106,6 +106,15 @@ footer {
     padding: 20px 0;
 }
 
+.cke_top,
+.cke_bottom {
+    display: none !important;
+}
+
+.cke_reset {
+    border-radius: 5px;
+}
+
 footer small {
     display: block;
 }

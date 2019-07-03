@@ -25,13 +25,13 @@
         <div class="col-md-3">
           <?php if($row["image"]==""){ echo "<img src='images/no-image.png' class='img-responsive btn-block'>"; } else { ?>
           <img src="images/<?php echo $row["image"] ?>" class="img-responsive btn-block">
-          <?php } ?>
+          <?php } ?> 
         </div>
         <div class="col-md-9">
           <h2><a href="index.php?detail=<?php echo $row["id"] ?>"><?php echo $row["title"] ?></a></h2>
           <div class="meta"><a href="index.php?category=<?php echo $row["category_id"] ?>">
             <span class="<?php echo $row["icon"] ?>" aria-hidden="true"></span> <?php echo $row["category_name"] ?></a> - <?php echo tanggal_indonesia($row["date"]);  ?></div>
-          <p><?php echo $row["description"] ?></p>
+          <p><?php echo substr($row["description"], 0, 200) ?>...</p>
         </div>
       </div>
     <?php } ?>

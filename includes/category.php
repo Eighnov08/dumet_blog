@@ -25,7 +25,9 @@
     <?php while($row = mysqli_fetch_array($query)) {?>
       <div class="row latest-post">
         <div class="col-md-3">
+        <?php if($row["image"]==""){ echo "<img src='images/no-image.png' class='img-responsive btn-block'>"; } else { ?>
           <img src="images/<?php echo $row["image"] ?>" class="img-responsive btn-block">
+        <?php } ?>
         </div>
         <div class="col-md-9">
           <h2><a href="index.php?detail=<?php echo $row["id"] ?>"><?php echo $row["title"] ?></a></h2>

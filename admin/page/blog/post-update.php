@@ -65,7 +65,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" rows="3" name="description"><?php echo $row_update["description"] ?></textarea>
+                                <textarea class="form-control" rows="3" id="myeditor" name="description"><?php echo $row_update["description"] ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
@@ -105,7 +105,7 @@
                                     <tr>
                                         <td><?php echo $row["category_name"] ?></td>
                                         <td><?php echo $row["title"] ?></td>
-                                        <td><?php echo $row["description"] ?></td>
+                                        <td><?php echo substr($row["description"], 0, 200)."..." ?></td>
                                         <td>
                                             <?php if($row["image"]=="") { echo "<img src='asset/no-image.png' width='88' />";} else{ ?>
                                                 <img src="../images/<?php echo $row["image"] ?>" width="88" class="img-responsive" />

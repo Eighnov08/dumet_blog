@@ -12,4 +12,4 @@
         $result = $Hari[$hari].", ".$tgl." ".$Bulan[(int)$bulan-1]." ".$tahun." ".$waktu." WIB";
         return $result;
     }
-?>
+?> 

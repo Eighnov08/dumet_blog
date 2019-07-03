@@ -22,7 +22,7 @@
 
     //TAMPIL DATA POST
     $post = mysqli_query($connection, "SELECT post.*, category.category_name FROM post, category
-                                        WHERE post.category_id = category.id ORDER BY post.id DESC");
+                                        WHERE post.category_id = category.id ORDER BY id DESC");
 ?>
 
 <div class="row">
@@ -93,7 +93,7 @@
                                     <tr>
                                         <td><?php echo $row["category_name"] ?></td>
                                         <td><?php echo $row["title"] ?></td>
-                                        <td><?php echo $row["description"] ?></td>
+                                        <td><?php echo substr($row["description"], 0, 200)."..." ?></td>
                                         <td>
                                             <?php if($row["image"]=="") { echo "<img src='asset/no-image.png' width='88' />";} else{ ?>
                                                 <img src="../images/<?php echo $row["image"] ?>" width="88" class="img-responsive" />

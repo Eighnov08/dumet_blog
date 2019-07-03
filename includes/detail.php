@@ -74,7 +74,7 @@
           <div class="form-group">
             <label for="inputPesan3" class="col-sm-2 control-label">Pesan</label>
             <div class="col-sm-10">
-              <textarea class="form-control" rows="3" name="comment"></textarea>
+              <textarea class="form-control" rows="3" name="comment" id="my_editor"></textarea>
             </div>
           </div>
           <div class="form-group">

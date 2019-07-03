@@ -37,6 +37,14 @@ date_default_timezone_set("Asia/Jakarta");
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+
+    <script type="text/javascript">
+        CKEDITOR.replace('my_editor',
+        {
+            toolbar :[]
+        });
+    </script>
   </body>
 </html>
 
